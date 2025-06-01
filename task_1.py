@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import logging
-from colorama import Fore, Back, Style, init
+from colorama import Fore, Back, init
 
 # Ініціалізація бібліотеки colorama для кольорового виводу
 init(autoreset=True)
@@ -8,6 +8,7 @@ init(autoreset=True)
 # Налаштування системи логування
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 # Базовий абстрактний клас для транспортних засобів
 class Vehicle(ABC):
@@ -20,6 +21,7 @@ class Vehicle(ABC):
     def start_engine(self) -> None:
         pass
 
+
 # Клас автомобіля, який наслідує Vehicle
 class Car(Vehicle):
     def start_engine(self) -> None:
@@ -27,12 +29,14 @@ class Car(Vehicle):
             f"{Back.BLUE}{Fore.WHITE} {self.make} {self.model} ({self.region_spec} Spec): Двигун запущено"
         )
 
+
 # Клас мотоцикла, який наслідує Vehicle
 class Motorcycle(Vehicle):
     def start_engine(self) -> None:
         logger.info(
             f"{Back.MAGENTA}{Fore.WHITE} {self.make} {self.model} ({self.region_spec} Spec): Мотор заведено"
         )
+
 
 # Абстрактна фабрика для створення транспортних засобів
 class VehicleFactory(ABC):
@@ -44,6 +48,7 @@ class VehicleFactory(ABC):
     def create_motorcycle(self, make: str, model: str) -> Vehicle:
         pass
 
+
 # Фабрика для американського ринку
 class USVehicleFactory(VehicleFactory):
     def create_car(self, make: str, model: str) -> Vehicle:
@@ -52,6 +57,7 @@ class USVehicleFactory(VehicleFactory):
     def create_motorcycle(self, make: str, model: str) -> Vehicle:
         return Motorcycle(make, model, "US")
 
+
 # Фабрика для європейського ринку
 class EUVehicleFactory(VehicleFactory):
     def create_car(self, make: str, model: str) -> Vehicle:
@@ -59,6 +65,7 @@ class EUVehicleFactory(VehicleFactory):
 
     def create_motorcycle(self, make: str, model: str) -> Vehicle:
         return Motorcycle(make, model, "EU")
+
 
 # Демонстрація роботи фабрик
 if __name__ == "__main__":
@@ -78,5 +85,3 @@ if __name__ == "__main__":
 
     eu_car.start_engine()
     eu_motorcycle.start_engine()
-
-   
