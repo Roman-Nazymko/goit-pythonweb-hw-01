@@ -1,13 +1,6 @@
 from abc import ABC, abstractmethod
-import logging
-from colorama import Fore, Style, init
-
-# Ініціалізація colorama
-init(autoreset=True)
-
-# Налаштування логування
-logging.basicConfig(level=logging.INFO, format="%(message)s")
-logger = logging.getLogger(__name__)
+from logger import logger
+from colorama import Fore, Style
 
 
 # Клас для зберігання інформації про книгу

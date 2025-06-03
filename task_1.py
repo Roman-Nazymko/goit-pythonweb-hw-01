@@ -1,14 +1,6 @@
 from abc import ABC, abstractmethod
-import logging
-from colorama import Fore, Back, init
-
-# Ініціалізація бібліотеки colorama для кольорового виводу
-init(autoreset=True)
-
-# Налаштування системи логування
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
+from logger import logger
+from colorama import Fore, Back
 
 # Базовий абстрактний клас для транспортних засобів
 class Vehicle(ABC):
